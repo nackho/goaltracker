@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Goal Details</h1>
+
+<div class="card">
+  <div class="card-content">
+    <span class="card-title">{{ goal.name }}</span>
+    <p>Category: {{ goal.category }}</p>
+    <p>Description: {{ goal.description|linebreaks }}</p>
+    <p>Start Date: {{ goal.start_date }}</p>
+    <p>End Date: {{ goal.end_date }}</p>
+  </div>
+</div>
+
+{% endblock %}
