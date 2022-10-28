@@ -13,4 +13,25 @@
     </table>
     <input type="submit" value="Submit!" class="btn">
   </form>
+
+<script>
+  const startDateEl = document.getElementById('id_start_date');
+  M.Datepicker.init(startDateEl, {
+    format: 'yyyy-mm-dd',
+    defaultDate: new Date(),
+    setDefaultDate: true,
+    autoClose: true
+  });
+
+  const endDateEl = document.getElementById('id_end_date');
+  M.Datepicker.init(endDateEl, {
+    format: 'yyyy-mm-dd',
+    defaultDate: new Date(),
+    setDefaultDate: true,
+    autoClose: true
+  });
+
+  const selectEl = document.getElementById('id_category');
+  M.FormSelect.init(selectEl);
+</script>
 {% endblock %}

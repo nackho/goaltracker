@@ -3,18 +3,51 @@
 
 <h1>Goal Details</h1>
 
-<div class="card">
-  <div class="card-content">
-    <span class="card-title">{{ goal.name }}</span>
-    <p>Category: {{ goal.category }}</p>
-    <p>Description: {{ goal.description|linebreaks }}</p>
-    <p>Start Date: {{ goal.start_date }}</p>
-    <p>End Date: {{ goal.end_date }}</p>
+<div class="row">
+  <div class="col s6">
+    <div class="card">
+      <div class="card-content">
+        <span class="card-title">{{ goal.name }}</span>
+        <p>Category: {{ goal.category }}</p>
+        <p>Description: {{ goal.description|linebreaks }}</p>
+        <p>Start Date: {{ goal.start_date|linebreaks }}</p>
+        <p>End Date: {{ goal.end_date|linebreaks }}</p>
+      </div>
+      <div class="card-action">
+        <a href="{% url 'goals_update' goal.id %}">Edit</a>
+        <a href="{% url 'goals_delete' goal.id %}">Delete</a>
+      </div>
+    </div>
   </div>
-  <div class="card-action">
-    <a href="{% url 'goals_update' goal.id %}">Edit</a>
-    <a href="{% url 'goals_delete' goal.id %}">Delete</a>
+  <div class="col s6">
+    <form method="POST">
+      {% csrf_token %}
+      {{ update_form.as_p }}
+      <input type="submit" class="btn" value="Add Update">
+    </form>
+    <table class="striped">
+      <thead>
+        <tr><th>Date</th><th>Progress Comment</th></tr>
+      </thead>
+      <tbody>
+        {% for update in goal.update_set.all %}
+          <tr>
+            <td>{{update.date}}</td>
+            <td>{{update.get_progress_comment_display}}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
   </div>
 </div>
 
+<script>
+  const dateEl = document.getElementById('id_date');
+  M.Datepicker.init(dateEl, {
+    format: 'yyyy-mm-dd',
+    defaultDate: new Date(),
+    setDefaultDate: true,
+    autoClose: true
+  });
+</script>
 {% endblock %}
