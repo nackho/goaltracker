@@ -11,6 +11,10 @@
     <p>Start Date: {{ goal.start_date }}</p>
     <p>End Date: {{ goal.end_date }}</p>
   </div>
+  <div class="card-action">
+    <a href="{% url 'goals_update' goal.id %}">Edit</a>
+    <a href="{% url 'goals_delete' goal.id %}">Delete</a>
+  </div>
 </div>
 
 {% endblock %}
