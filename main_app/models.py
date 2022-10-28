@@ -25,7 +25,8 @@ class Goal(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     
     def __str__(self):
-        return self.name
+    # Nice method for obtaining the friendly value of a Field.choice
+        return f"{self.get_category_display()}"
     
     def get_absolute_url(self):
         return reverse('detail', kwargs={'goal_id': self.id})

@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Goal
 from django.contrib.auth import login
-from .forms import UserForm
+from .forms import UserForm, UpdateForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -18,7 +18,8 @@ def goals_index(request):
 @login_required
 def goals_detail(request, goal_id):
   goal = Goal.objects.get(id=goal_id)
-  return render(request, 'goals/detail.html', { 'goal': goal })
+  update_form = UpdateForm()
+  return render(request, 'goals/detail.html', { 'goal': goal, 'update_form': update_form})
 
 class GoalCreate(LoginRequiredMixin, CreateView):
   model = Goal
