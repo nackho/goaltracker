@@ -20,8 +20,8 @@
         <ul class="right">
           {% if user.is_authenticated %}
             <li><a href="">Add a Reward</a></li>
-            <li><a href="">View All Rewards</a></li>
-            <li><a href="">Add a Goal</a></li>
+            <li><a href="{% url 'index' %}">View All Rewards</a></li>
+            <li><a href="{% url 'goals_create' %}">Add a Goal</a></li>
             <li><a href="/goals">View All My Goals</a></li>
             <li><a href="{% url 'logout' %}">Log Out</a></li>
           {% else %}
