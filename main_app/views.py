@@ -21,6 +21,15 @@ def goals_detail(request, goal_id):
   update_form = UpdateForm()
   return render(request, 'goals/detail.html', { 'goal': goal, 'update_form': update_form})
 
+@login_required
+def add_update(request, goal_id):
+  form = UpdateForm(request.POST)
+  if form.is_valid():
+    new_update = form.save(commit=False)
+    new_update.goal_id = goal_id
+    new_update.save()
+  return redirect('detail', goal_id=goal_id)
+
 class GoalCreate(LoginRequiredMixin, CreateView):
   model = Goal
   fields = ['name', 'category', 'description', 'start_date', 'end_date']
