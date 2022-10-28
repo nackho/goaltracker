@@ -8,4 +8,5 @@ urlpatterns = [
     path('goals/create/', views.GoalCreate.as_view(), name='goals_create'),
     path('goals/<int:pk>/update/', views.GoalUpdate.as_view(), name='goals_update'),
     path('goals/<int:pk>/delete/', views.GoalDelete.as_view(), name='goals_delete'),
+    path('accounts/signup/', views.signup, name='signup'),
 ]
