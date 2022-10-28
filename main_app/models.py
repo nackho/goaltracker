@@ -12,10 +12,20 @@ CATEGORIES = (
 )
 
 # Create your models here.
+class Reward(models.Model):
+    name = models.CharField(max_length=50)
+    description = models.TextField(max_length=250)
+    
+    def __str__(self):
+        return self.name
+    
+    def get_absolute_url(self):
+        return reverse('rewards_detail', kwargs={'pk': self.id})
+
 class Goal(models.Model):
     name = models.CharField(max_length=100)
     category = models.CharField(
-        max_length=100,
+        max_length=1,
         choices=CATEGORIES,
         default=CATEGORIES[4][0]
     )
@@ -23,6 +33,7 @@ class Goal(models.Model):
     start_date = models.DateField()
     end_date = models.DateField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    rewards = models.ManyToManyField(Reward)
     
     def __str__(self):
         return f'{self.name} ({self.id})'
