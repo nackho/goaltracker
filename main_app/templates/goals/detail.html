@@ -20,7 +20,7 @@
     </div>
   </div>
   <div class="col s6">
-    <form method="POST">
+    <form action="{% url 'add_update' goal.id %}" method="POST">
       {% csrf_token %}
       {{ update_form.as_p }}
       <input type="submit" class="btn" value="Add Update">
@@ -33,7 +33,7 @@
         {% for update in goal.update_set.all %}
           <tr>
             <td>{{update.date}}</td>
-            <td>{{update.get_progress_comment_display}}</td>
+            <td>{{update.progress_comment}}</td>
           </tr>
         {% endfor %}
       </tbody>
