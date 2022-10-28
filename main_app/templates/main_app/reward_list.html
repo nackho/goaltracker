@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Reward List</h1>
+
+{% for reward in reward_list %}
+  <a href="{% url 'rewards_detail' reward.id %}">
+    <div class="card">
+        <div class="card-content">
+            <span class="card-title">{{ reward.name }}</span>
+            <p>Description: {{ reward.description }}</p>
+        </div>
+    </div>
+  </a>
+{% endfor %}
+
+{% endblock %}
