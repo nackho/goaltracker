@@ -1,3 +1,5 @@
+from random import choices
+from tkinter import Widget
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
@@ -44,13 +46,18 @@ class Goal(models.Model):
 class Update(models.Model):
     date = models.DateField()
     progress_comment = models.TextField(max_length=250)
+    complete_status = models.BooleanField(
+        verbose_name=("Goal Complete?"), 
+        default=False,
+        blank= True,
+        )
     goal = models.ForeignKey(
         Goal,
         on_delete=models.CASCADE
     )  
     
-    def __str__(self):
-        return f"{self.get_update_display()} on {self.date}"
+    # def __str__(self):
+    #     return f"{self.get_update_display()} on {self.date}"
 
     class Meta:
         ordering = ['-date']
