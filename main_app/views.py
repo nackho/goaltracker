@@ -93,3 +93,9 @@ def signup(request):
   form = UserForm()
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context)
+
+def goals_complete(request, pk):
+  goal = Goal.objects.get(pk=pk)
+  goal.is_done = True
+  goal.save()
+  return redirect('index')
