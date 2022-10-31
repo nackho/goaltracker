@@ -48,8 +48,8 @@ class Update(models.Model):
     progress_comment = models.TextField(max_length=250)
     complete_status = models.BooleanField(
         verbose_name=("Goal Complete?"), 
-        default=False,
-        blank= True,
+        # default=False,
+        # blank= True,
         )
     goal = models.ForeignKey(
         Goal,
