@@ -8,9 +8,13 @@
     <div class="card">
       <div class="card-content">
         <span class="card-title">{{ goal.name }}</span>
-        <p>Category: {{ goal.category }}</p>
+        <hr>
+        <p>Category: {{ goal.get_category_display }}</p>
+        <br>
         <p>Description: {{ goal.description|linebreaks }}</p>
+        <br>
         <p>Start Date: {{ goal.start_date|linebreaks }}</p>
+        <br>
         <p>End Date: {{ goal.end_date|linebreaks }}</p>
       </div>
       <div class="card-action">
