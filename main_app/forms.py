@@ -1,3 +1,4 @@
+from urllib import request
 from django import forms
 from django.forms import ModelForm
 from .models import Update
@@ -41,16 +42,9 @@ class UserForm(UserCreationForm):
             self.cleaned_data['password1']  
         )  
         return user  
-
-TRUE_FALSE_CHOICES = (
-    (True, 'Yes'),
-    (False, 'No')
-)
  
 class UpdateForm(ModelForm):
     class Meta:
         model = Update
-        fields = ['date', 'progress_comment', 'complete_status']
-        widgets = {
-            'complete_status': forms.Select(choices=TRUE_FALSE_CHOICES)
-        }
+        fields = ['date', 'progress_comment', 'status']
+        
