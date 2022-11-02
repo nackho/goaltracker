@@ -9,23 +9,38 @@
   <title>Goal Tracker</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+  <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
 <body>
   <header class="navbar-fixed">
-    <nav>
+    
+    <ul id="rewards-dropdown" class="dropdown-content">
+      <li><a href="{% url 'rewards_create' %}">Add a Reward</a></li>
+      <li class="divider"></li>
+      <li><a href="{% url 'rewards_index' %}">View All Rewards</a></li>
+    </ul>
+    
+    <ul id="goals-dropdown" class="dropdown-content">
+      <li><a href="{% url 'goals_create' %}">Add a Goal</a></li>
+      <li class="divider"></li>
+      <li><a href="/goals">View All My Goals</a></li>
+    </ul>
+    
+    <nav class="blue">
       <div class="nav-wrapper">
         <ul>
           <li><a href="/" class="left brand-logo">&nbsp;&nbsp;GoalTracker</a></li>
         </ul>
         <ul class="right">
           {% if user.is_authenticated %}
-            <li><a href="{% url 'rewards_create' %}">Add a Reward</a></li>
-            <li><a href="{% url 'rewards_index' %}">View All Rewards</a></li>
-            <li><a href="{% url 'goals_create' %}">Add a Goal</a></li>
-            <li><a href="/goals">View All My Goals</a></li>
+            <!-- Dropdown trigger: Rewards -->
+            <li><a class="dropdown-trigger" href="#!" data-target="rewards-dropdown">Rewards</a></li>
+            <!-- Dropdown trigger: Goals -->
+            <li><a class="dropdown-trigger" href="#!" data-target="goals-dropdown">Goals</a></li> 
+            
             <li><a href="{% url 'logout' %}">Log Out</a></li>
-          {% else %}
+            {% else %}
             <li><a href="{% url 'signup' %}">Sign Up</a></li>
             <li><a href="{% url 'login' %}">Log In</a></li>
           {% endif %}
@@ -38,7 +53,15 @@
     {% endblock %}
   </main>
   <footer class="page-footer">
-    <div class="right">All Rights Reserved, &copy; 2022 GoalTracker &nbsp;</div>
+    <div class="right">All Rights Reserved, &copy; 2021 Goal Tracker &nbsp;</div>
   </footer>
 </body>
+<script>
+  $(document).ready(function(){
+    $('.dropdown-trigger').dropdown({
+      hover: true,
+      coverTrigger: false
+    });
+  })
+</script>
 </html>
