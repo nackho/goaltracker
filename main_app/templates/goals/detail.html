@@ -30,7 +30,7 @@
     </div>
   </div>
   <div class="col s6">
-    <form action="{% url 'add_update' goal.id %}" method="POST">
+    <form action="{% url 'add_update' goal.id %}" method="POST" id="AddUpdate">
       {% csrf_token %}
       {{ update_form.as_p }}
       {% if goal.is_complete %}
@@ -119,5 +119,6 @@
 
   const selectEl = document.getElementById('id_status');
   M.FormSelect.init(selectEl);
+
 </script>
 {% endblock %}
