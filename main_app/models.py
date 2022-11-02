@@ -1,8 +1,11 @@
+from email.policy import default
 from random import choices
 from tkinter import Widget
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
+from model_utils.fields import MonitorField, StatusField
+from model_utils import Choices
 
 
 CATEGORIES = (
@@ -24,6 +27,7 @@ class Reward(models.Model):
     def get_absolute_url(self):
         return reverse('rewards_detail', kwargs={'pk': self.id})
 
+
 class Goal(models.Model):
     name = models.CharField(max_length=100)
     category = models.CharField(
@@ -43,14 +47,15 @@ class Goal(models.Model):
     def get_absolute_url(self):
         return reverse('detail', kwargs={'goal_id': self.id})
     
+    def is_complete(self):
+        return self.update_set.filter(status = 'Complete')
+     
+
 class Update(models.Model):
     date = models.DateField()
     progress_comment = models.TextField(max_length=250)
-    complete_status = models.BooleanField(
-        verbose_name=("Goal Complete?"), 
-        default=False,
-        blank= True,
-        )
+    STATUS = Choices('In Progress', 'Complete')
+    status = StatusField()
     goal = models.ForeignKey(
         Goal,
         on_delete=models.CASCADE

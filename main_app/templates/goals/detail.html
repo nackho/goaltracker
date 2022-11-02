@@ -3,6 +3,12 @@
 
 <h1>Goal Details</h1>
 
+<h5>
+  {% if goal.is_complete %}
+    CONGRATULATIONS!! YOU HAVE COMPLETED THIS GOAL!!
+  {% endif %}
+</h5>
+
 <div class="row">
   <div class="col s6">
     <div class="card">
@@ -27,7 +33,11 @@
     <form action="{% url 'add_update' goal.id %}" method="POST" id="AddUpdate">
       {% csrf_token %}
       {{ update_form.as_p }}
-      <input type="submit" class="btn" value="Add Update">
+      {% if goal.is_complete %}
+        <input type="submit" class="btn" value="Add Update" disabled="disabled">
+      {% else %}
+        <input type="submit" class="btn" value="Add Update">
+      {% endif %}
     </form>
     <table class="striped">
       <thead>
@@ -42,10 +52,10 @@
           <tr>
             <td>{{update.date}}</td>
             <td>{{update.progress_comment}}</td>
-            {% if update.complete_status == True %}
-              <td>✓</td>
+            {% if goal.is_complete %}
+              <td>{{ update.status }}</td>
             {% else %}
-              <td>-</td>
+              <td>In Progress</td>
             {% endif %}
           </tr>
         {% endfor %}
@@ -107,7 +117,7 @@
     autoClose: true
   });
 
-  const selectEl = document.getElementById('id_complete_status');
+  const selectEl = document.getElementById('id_status');
   M.FormSelect.init(selectEl);
 
 </script>
