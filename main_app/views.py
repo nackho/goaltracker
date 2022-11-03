@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
 from .models import Goal, Reward
@@ -93,3 +93,12 @@ def signup(request):
   form = UserForm()
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context)
+
+def goal_progress(request, goal_id):
+  template_name = "goals/progress.html"
+  current_goal = get_object_or_404(Goal, pk=goal_id)
+  goal = Goal.objects.get(id=goal_id)
+  available_weeks = Goal.objects.values("goal_week").filter(name=current_goal).order_by("goal_week").distinct() 
+  context = { "goal" : goal, "available_weeks" : available_weeks}
+
+  return render (request, template_name, context)
