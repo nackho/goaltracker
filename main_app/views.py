@@ -93,3 +93,6 @@ def signup(request):
   form = UserForm()
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context)
+
+
+    
