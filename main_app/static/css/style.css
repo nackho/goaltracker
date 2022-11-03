@@ -42,11 +42,15 @@ footer.page-footer {
   background-color: #d2601a25;
 }
 
-a:hover {
-  color: white
+a.link.hoverable {
+  color: white;
+  padding: 20px;
+}
+
+#edit {
+  padding: 10px;
 }
 
 #complete-message {
   text-align: center;
-  
 }

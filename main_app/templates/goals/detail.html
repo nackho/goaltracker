@@ -24,7 +24,7 @@
         <p>Projected End Date: {{ goal.end_date|linebreaks }}</p>
       </div>
       <div class="card-action">
-        <a class="link hoverable" href="{% url 'goals_update' goal.id %}">Edit</a>
+        <a id="edit" class="link hoverable" href="{% url 'goals_update' goal.id %}">Edit</a>
         <a class="link hoverable" href="{% url 'goals_delete' goal.id %}">Delete</a>      
       </div>
     </div>
