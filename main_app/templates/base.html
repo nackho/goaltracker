@@ -24,10 +24,20 @@
     <ul id="goals-dropdown" class="dropdown-content">
       <li><a href="{% url 'goals_create' %}">Add a Goal</a></li>
       <li class="divider"></li>
-      <li><a href="/goals">View All My Goals</a></li>
+      <li><a href="{% url 'index' %}">View All My Goals</a></li>
     </ul>
     
-    <nav class="blue">
+    <ul id="logged-out-dropdown" class="dropdown-content">
+      <li><a href="{% url 'signup' %}">Sign Up</a></li>
+      <li class="divider"></li>
+      <li><a href="{% url 'login' %}">Log In</a></li>
+    </ul>
+
+    <ul id="logged-in-dropdown" class="dropdown-content">
+      <li><a href="{% url 'logout' %}">Log Out</a></li>
+    </ul>
+
+    <nav>
       <div class="nav-wrapper">
         <ul>
           <li><a href="/" class="left brand-logo">&nbsp;&nbsp;GoalTracker</a></li>
@@ -38,11 +48,11 @@
             <li><a class="dropdown-trigger" href="#!" data-target="rewards-dropdown">Rewards</a></li>
             <!-- Dropdown trigger: Goals -->
             <li><a class="dropdown-trigger" href="#!" data-target="goals-dropdown">Goals</a></li> 
-            
-            <li><a href="{% url 'logout' %}">Log Out</a></li>
-            {% else %}
-            <li><a href="{% url 'signup' %}">Sign Up</a></li>
-            <li><a href="{% url 'login' %}">Log In</a></li>
+            <!-- Dropdown trigger: Logged Out -->
+            <li><a class="dropdown-trigger" href="#!" data-target="logged-in-dropdown">Account</a></li> 
+          {% else %}
+            <!-- Dropdown trigger: Logged Out -->
+            <li><a class="dropdown-trigger" href="#!" data-target="logged-out-dropdown">Account</a></li> 
           {% endif %}
         </ul>
       </div>
@@ -53,13 +63,13 @@
     {% endblock %}
   </main>
   <footer class="page-footer">
-    <div class="right">All Rights Reserved, &copy; 2021 Goal Tracker &nbsp;</div>
+    <div class="right">All Rights Reserved, &copy; 2022 Goal Tracker &nbsp;</div>
   </footer>
 </body>
 <script>
   $(document).ready(function(){
     $('.dropdown-trigger').dropdown({
-      hover: true,
+      hover: false,
       coverTrigger: false
     });
   })
