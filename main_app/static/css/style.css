@@ -2,6 +2,21 @@ body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+  background-color: #fff1e1;
+}
+
+div.nav-wrapper {
+  background-color: #1d3c45;
+}
+
+div.card-action {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap:nowrap;
+  justify-content: space-evenly;
+  color: floralwhite;
+
 }
 
 main {
@@ -20,4 +35,17 @@ footer.page-footer {
 
 #home-heading {
   text-align: center;
+}
+
+.card {
+  background-color: #d2601a25;
+}
+
+a:hover {
+  color: white
+}
+
+#complete-message {
+  text-align: center;
+  
 }
