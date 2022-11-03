@@ -38,6 +38,7 @@ class Goal(models.Model):
     description = models.TextField(max_length=250)
     start_date = models.DateField()
     end_date = models.DateField()
+    goal_week = models.IntegerField(default=1)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     rewards = models.ManyToManyField(Reward)
     
