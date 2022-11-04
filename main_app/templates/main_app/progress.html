@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="mt-4">{{goal.name}} Progress</h1>
+<div>
+    <div class="form-row">
+        <div class="col-auto">
+            <form action="{% url 'weekly_progress' goal.id %}" method="POST">
+                {% csrf_token %}
+                <div class="form-group form-row mt-4">
+                    <div class="col-auto">
+                        <label for="goal_week" class="col-form-label">Select a  Week</label>
+                    </div>
+                    <div class="col-auto">
+                        <select name="goal_week" class="form-control" required>
+                            {% for week in available_weeks %}
+                            <option value={{week.goal_week}}>{{week.goal_week}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-auto">
+                        <input type="submit" class="btn btn-primary">
+                    </div>
+                </div>
+            </form>
+            <div class="col-auto">
+                <form action="{% url 'range_progress' goal.id %}" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group form-row mt-4">
+                        <div class="col-auto">
+                            <label for="start_week" class="col-form-label ml-3">Or Select a Range</label>
+                        </div>
+                        <div class="col-auto">
+                            <select name="start_week" class="form-control" required>
+                                {% for week in available_weeks %}
+                                <option value={{week.goal_week}}>Week {{week.goal_week}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-auto">
+                            <label class="col-form-label">to</label>
+                        </div>
+                        <div class="col-auto">
+                            <select name="end_week" class="form-control" required>
+                                {% for week in available_weeks %}
+                                <option value={{week.goal_week}}>Week {{week.goal_week}}</option>
+                                {% endfor %}
+                            </select> </div>
+                    <div class="col-auto">
+                        <input type="submit" class="btn btn-primary">
+                    </div>
+                </div>
+            </form>
+        </div>
+    
+    </div>
+    
+</div>
+{% endblock %}

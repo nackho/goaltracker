@@ -95,10 +95,43 @@ def signup(request):
   return render(request, 'registration/signup.html', context)
 
 def goal_progress(request, goal_id):
-  template_name = "goals/progress.html"
+  template_name = "main_app/progress.html"
   current_goal = get_object_or_404(Goal, pk=goal_id)
   goal = Goal.objects.get(id=goal_id)
   available_weeks = Goal.objects.values("goal_week").filter(name=current_goal).order_by("goal_week").distinct() 
   context = { "goal" : goal, "available_weeks" : available_weeks}
 
   return render (request, template_name, context)
+
+def weekly_progress(request, goal_id):
+  template_name = "main_app/weekly_progress.html"
+  current_goal = get_object_or_404(Goal, pk=goal_id)
+  goal_week_input = request.POST.get("goal_week_input", False)
+  available_weeks = Goal.objects.values("goal_week").filter(name=current_goal).order_by("goal_week").distinct() 
+
+  goals = Goal.objects.filter(name=current_goal, goal_week=goal_week_input)
+
+  context = {'current_goal': current_goal, 'goals': goals, 'goal_week_input': goal_week_input, 'available_weeks': available_weeks}
+
+  return render (request, template_name, context)
+
+def range_progress(request, goal_id):
+  current_goal = get_object_or_404(Goal, pk=goal_id)
+  available_weeks = Goal.objects.values("goal_week").filter(name=current_goal).order_by("goal_week").distinct() 
+
+  start_week = request.POST.get("start_week", False)
+  start_week = int(start_week)
+
+  end_week = request.POST.get("end_week", False)
+  end_week = int(end_week)
+
+  week_range = list(range(start_week, end_week+1))
+
+  weekly_goal = []
+
+  for week in week_range:
+    weekly_goal.append(Goal.objects.filter(goal_week=week, name=current_goal))
+
+  context = {'current_goal': current_goal, 'available_weeks': available_weeks, 'week_range': week_range, 'start_week': start_week, 'end_week': end_week}
+
+  return render(request, "main_app/range_progress.html", context)
