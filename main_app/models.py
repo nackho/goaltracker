@@ -3,7 +3,7 @@ from random import choices
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
-from model_utils.fields import MonitorField, StatusField
+from model_utils.fields import StatusField
 from model_utils import Choices
 
 
