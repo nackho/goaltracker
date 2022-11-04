@@ -1,1 +1,1 @@
-web: gunicorn <goaltracker>.wsgi
+web: gunicorn goaltracker.wsgi
