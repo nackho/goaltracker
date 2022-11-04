@@ -1,10 +1,9 @@
 from email.policy import default
 from random import choices
-from tkinter import Widget
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
-from model_utils.fields import MonitorField, StatusField
+from model_utils.fields import StatusField
 from model_utils import Choices
 
 
