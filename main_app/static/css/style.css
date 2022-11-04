@@ -1,3 +1,8 @@
+:root {
+  --main-color: #1d3c45;
+  --secondary-color: #d2601a25;
+}
+
 body {
   display: flex;
   min-height: 100vh;
@@ -6,7 +11,7 @@ body {
 }
 
 div.nav-wrapper {
-  background-color: #1d3c45;
+  background-color: var(--main-color);
 }
 
 div.card-action {
@@ -26,7 +31,7 @@ main {
 footer.page-footer {
   padding-top: 0;
   text-align: right;
-  background-color: #1d3c45;
+  background-color: var(--main-color);
 }
 
 #home-title {
@@ -39,18 +44,55 @@ footer.page-footer {
 }
 
 .card {
-  background-color: #d2601a25;
+  background-color: var(--secondary-color);
 }
 
-a.link.hoverable {
-  color: white;
-  padding: 20px;
+a {
+  color: black
 }
 
-#edit {
-  padding: 10px;
+a:hover {
+  color: floralwhite
 }
 
 #complete-message {
   text-align: center;
+  
+}
+
+.btn {
+  background-color: var(--main-color);
+}
+
+.btn:hover {
+  background-color: #356a7a !important;
+}
+
+.datepicker-date-display {
+  background-color: var(--main-color);
+}
+
+.is-today .datepicker-day-button {
+  color: grey;
+}
+
+.is-selected .datepicker-day-button {
+  color: white;
+  background-color: var(--main-color);
+}
+
+.datepicker-cancel {
+  color: var(--main-color);
+}
+
+.datepicker-done {
+  color: var(--main-color);
+}
+
+ul li ul li { /* this is so stupid */
+  background-color: var(--secondary-color);
+}
+
+ul li ul li a { /* lol */
+  color: var(--main-color) !important;
 }
