@@ -22,7 +22,7 @@ Javascript
 ```
 
 [Pitch-deck](https://docs.google.com/document/d/1UAN_iHgSuyKQfZRRTBSB2RUie95p7qRRwPJM8DuMCgA/edit#heading=h.dpr2mwcery9)
-<br>Within the pitch-deck is:
+Within the pitch-deck is:
 ```
 Trello Board
 ERD
