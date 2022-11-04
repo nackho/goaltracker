@@ -16,7 +16,4 @@ urlpatterns = [
     path('rewards/<int:pk>/update/', views.RewardUpdate.as_view(), name='rewards_update'),
     path('rewards/<int:pk>/delete/', views.RewardDelete.as_view(), name='rewards_delete'),
     path('goals/<int:goal_id>/assoc_reward/<int:reward_id>/', views.assoc_reward, name='assoc_reward'),
-    path('goals/<int:goal_id>/progress/', views.goal_progress, name='goal_progress'),
-    path('goals/<int:goal_id>/weekly-progress/', views.weekly_progress, name='weekly_progress'),
-    path('goals/<int:goal_id>/range-progress/', views.range_progress, name='range_progress'),
 ]
