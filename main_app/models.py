@@ -59,9 +59,6 @@ class Update(models.Model):
         Goal,
         on_delete=models.CASCADE
     )  
-    
-    # def __str__(self):
-    #     return f"{self.get_update_display()} on {self.date}"
 
     class Meta:
         ordering = ['-date']

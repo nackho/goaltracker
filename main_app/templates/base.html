@@ -45,15 +45,14 @@
         </ul>
         <ul class="right">
           {% if user.is_authenticated %}
-            <!-- Dropdown trigger: Rewards -->
-            <li><a class="nav-dropdown-trigger" href="#!" data-target="rewards-dropdown">Rewards<i class="material-icons right">arrow_drop_down</i></a></li>
-            <!-- Dropdown trigger: Goals -->
-            <li><a class="nav-dropdown-trigger" href="#!" data-target="goals-dropdown">Goals<i class="material-icons right">arrow_drop_down</i></a></li> 
-            <!-- Dropdown trigger: Logged Out -->
-            <li><a class="nav-dropdown-trigger" href="/accounts" data-target="logged-in-dropdown">Account<i class="material-icons right">arrow_drop_down</i></a></li> 
-          {% else %}
-            <!-- Dropdown trigger: Logged Out -->
-            <li><a class="nav-dropdown-trigger" href="/accounts/login/#!" data-target="logged-out-dropdown">Account<i class="material-icons right">arrow_drop_down</i></a></li> 
+          <li><a href="{% url 'rewards_create' %}">Add a Reward</a></li>
+          <li><a href="{% url 'rewards_index' %}">View All Rewards</a></li>
+          <li><a href="{% url 'goals_create' %}">Add a Goal</a></li>
+          <li><a href="/goals">View All My Goals</a></li>
+          <li><a href="{% url 'logout' %}">Log Out</a></li>
+        {% else %}
+          <li><a href="{% url 'signup' %}">Sign Up</a></li>
+          <li><a href="{% url 'login' %}">Log In</a></li>
           {% endif %}
         </ul>
       </div>
